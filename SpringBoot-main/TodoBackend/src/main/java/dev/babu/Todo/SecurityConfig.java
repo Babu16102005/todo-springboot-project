@@ -33,7 +33,7 @@ public class SecurityConfig {
 
         return http.build();
     }
-    @Bean
+    @Bean  // CORS Configuration frontend connection
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://127.0.0.1:5500", "http://localhost:5500"));
