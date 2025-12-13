@@ -29,7 +29,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    background: linear-gradient(to bottom, #8aeb74, #1b37b4);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -41,7 +41,7 @@ body {
 .container {
     width: 100%;
     max-width: 500px;
-    background: #ffffff;
+    background: #eaabab;
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
