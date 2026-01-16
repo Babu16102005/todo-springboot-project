@@ -12,10 +12,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
-@Component
+@Component    // This annotation is used to define a component class in Spring Boot.
 public class JwtFilter extends OncePerRequestFilter {
 
-    @Autowired
+    @Autowired    // This annotation is used to inject the JwtUtil dependency.
     private JwtUtil jwtUtil;
 
     @Override

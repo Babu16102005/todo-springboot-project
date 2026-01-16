@@ -22,3 +22,5 @@ public class Todo {
     String description;
     Boolean isCompleted;
 }
+
+// In a Spring Boot backend, the model file is used to represent your data structure and map it to the database.

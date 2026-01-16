@@ -12,15 +12,15 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
-@Configuration
+@Configuration    // This annotation is used to define a configuration class in Spring Boot.
 public class SecurityConfig {
 
-    @Bean
+    @Bean    // This annotation is used to define a bean in Spring Boot.
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    @Bean    // This annotation is used to define a bean in Spring Boot.
     public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter) throws Exception {
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
@@ -33,7 +33,7 @@ public class SecurityConfig {
 
         return http.build();
     }
-    @Bean  // CORS Configuration frontend connection
+    @Bean       // CORS Configuration frontend connection
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://127.0.0.1:5500", "http://localhost:5500"));

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController
-@RequestMapping("/auth")
-@RequiredArgsConstructor
+@RestController    // This annotation is used to define a controller class in Spring Boot.
+@RequestMapping("/auth")    // This annotation is used to define a base URL for all the endpoints in this controller.
+@RequiredArgsConstructor    // This annotation is used to generate a constructor for the class.
 public class AuthController {
 
     private final UserRepository userRepo;
@@ -21,7 +21,7 @@ public class AuthController {
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
-    @PostMapping("/register")
+    @PostMapping("/register")    // This annotation is used to define a POST endpoint for the register method.
     public ResponseEntity<String> register(@RequestBody Map<String, String> body) {
         String email = body.get("email");
         String password = passwordEncoder.encode(body.get("password"));
@@ -32,7 +32,7 @@ public class AuthController {
         return ResponseEntity.ok("User registered");
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login")    // This annotation is used to define a POST endpoint for the login method.
     public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
         String email = body.get("email");
         String password = body.get("password");

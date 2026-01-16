@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/v1/todo")
-@Slf4j
+@RestController    // This annotation is used to define a controller class in Spring Boot.
+@RequestMapping("/api/v1/todo")    // This annotation is used to define a base URL for all the endpoints in this controller.
+@Slf4j    // This annotation is used to enable logging in the class.
 public class TodoController {
-    @Autowired
+    @Autowired    // This annotation is used to inject the TodoService dependency.
     private TodoService todoService;
 
     // Path Variable
-    @ApiResponses(value = {
+    @ApiResponses(value = { 
             @ApiResponse(responseCode = "200", description = "Todo Retrieved Successfully"),
             @ApiResponse(responseCode = "404", description = "Todo was not found!")
     })
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")    // This annotation is used to define a GET endpoint for the getTodoById method.
     ResponseEntity<Todo> getTodoById(@PathVariable long id) {
         try {
             Todo createdTodo = todoService.getTodoById(id);
@@ -38,29 +38,29 @@ public class TodoController {
         }
     }
 
-    @GetMapping
+    @GetMapping    // This annotation is used to define a GET endpoint for the getTodos method.
     ResponseEntity<List<Todo>> getTodos() {
         return new ResponseEntity<List<Todo>>(todoService.getTodos(), HttpStatus.OK);
     }
 
-    @GetMapping("/page")
+    @GetMapping("/page")    // This annotation is used to define a GET endpoint for the getTodosPaged method.
     ResponseEntity<Page<Todo>> getTodosPaged(@RequestParam int page, @RequestParam int size) {
         return new ResponseEntity<>(todoService.getAllTodosPages(page, size), HttpStatus.OK);
     }
 
 
-    @PostMapping("/create")
+    @PostMapping("/create")    // This annotation is used to define a POST endpoint for the createUser method.
     ResponseEntity<Todo> createUser(@RequestBody Todo todo) {
         Todo createdTodo = todoService.createTodo(todo);
         return new ResponseEntity<>(createdTodo, HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping    // This annotation is used to define a PUT endpoint for the updateTodoById method.
     ResponseEntity<Todo> updateTodoById(@RequestBody Todo todo) {
         return new ResponseEntity<>(todoService.updateTodo(todo), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")    // This annotation is used to define a DELETE endpoint for the deleteTodoById method.
     void deleteTodoById(@PathVariable long id) {
         todoService.deleteTodoById(id);
     }

@@ -21,3 +21,4 @@ public class User {
     private String email;
     private String password;
 }
+// In a Spring Boot backend, the model file is used to represent your data structure and map it to the database.
