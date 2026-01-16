@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # The Spring Boot Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todo-app
+    ports:
+      - "8080:8080"
+    environment:
+      # Connect to the 'db' service defined below
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/tododb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db
+    networks:
+      - todo-network
+
+  # The PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: todo-db
+    ports:
+      - "5432:5432" # Optional: Expose 5432 if you want to connect via local tool (pgadmin/psql)
+    environment:
+      - POSTGRES_DB=tododb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - todo-network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  todo-network:
+    driver: bridge
